@@ -8,7 +8,7 @@ import { Input } from '@/components/ui/input';
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { data, loading, error }] = useMutation(LOGIN);
+  const [login, {loading}] = useMutation(LOGIN);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { CREATE_USER, LOGIN } from '../services/queries';
+import { CREATE_USER } from '../services/queries';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -9,7 +9,7 @@ export default function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [cpf, setCpf] = useState('');
-    const [createUser, { data, loading, error }] = useMutation(CREATE_USER);
+    const [createUser, {loading}] = useMutation(CREATE_USER);
     
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
