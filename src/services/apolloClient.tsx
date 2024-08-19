@@ -1,11 +1,9 @@
-import { ApolloClient, InMemoryCache, HttpLink } from "@apollo/client";
-const GRAPHQL_URL = import.meta.env.GRAPHQL_URL || "http://localhost:10000/graphql";
+import { ApolloClient, InMemoryCache } from "@apollo/client";
+const GRAPHQL_URL = "https://woovi-bank-backend.onrender.com/graphql";
 
 const client = new ApolloClient({
-  cache: new InMemoryCache(),
-  link: new HttpLink({
     uri: GRAPHQL_URL,
-  }),
+    cache: new InMemoryCache(),
 });
 
 export default client;
