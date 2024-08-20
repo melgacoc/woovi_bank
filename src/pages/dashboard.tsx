@@ -156,7 +156,7 @@ export default function Dashboard() {
                 <div className="w-full max-w-4xl p-6 bg-white shadow-lg rounded-lg">
                     <div className="flex items-center justify-end space-x-4">
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">To</label>
+                                <label className="block text-sm font-medium text-gray-700">From</label>
                                 <DatePicker
                                     selected={dateFilterTo}
                                     onChange={(date) => setDateFilterTo(date)}
@@ -165,7 +165,7 @@ export default function Dashboard() {
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium text-gray-700">From</label>
+                                <label className="block text-sm font-medium text-gray-700">To</label>
                                 <DatePicker
                                     selected={dateFilterFrom}
                                     onChange={(date) => setDateFilterFrom(date)}
