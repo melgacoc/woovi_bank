@@ -15,6 +15,7 @@ import { IAccount, ITransaction } from '../interfaces/Interfaces';
 
 export default function Dashboard() {
     const user = JSON.parse(localStorage.getItem('authToken') as string);
+    console.log(user);
     //const [to, setTo] = useState("");
     const [amountNumber, setAmountNumber] = useState("");
     const [depositAmount, setDepositAmount] = useState("");

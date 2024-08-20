@@ -14,7 +14,7 @@ export default function Login() {
     login({ variables: { email, password } })
       .then(response => {
         if (response.data.login) {
-          console.log('Logged in');
+          console.log(response.data.login);
           localStorage.setItem('authToken', JSON.stringify({
             token: response.data.login.token,
             id: response.data.login.id,
@@ -26,6 +26,7 @@ export default function Login() {
         }
       })
       .catch(err => {
+        alert('Invalid email or password');
         console.error(err);
       });
   };
