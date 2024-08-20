@@ -26,17 +26,15 @@ export const GET_ACCOUNTS = gql`
 `;
 
 export const GET_TRANSACTIONS = gql`
-  query {
+  query($accountId: ID!, $filter: TransactionFilterInput) {
     transactions(
-      accountId: "string",
-      filter: {
-        startDate: "string",
-        endDate: "string",
-        type: "string"
-      }
+      accountId: $accountId,
+      filter: $filter
     ) {
       id
       date
+      type
+      amount
       to {
         id
         ownerName
@@ -51,21 +49,31 @@ export const GET_TRANSACTIONS = gql`
 
 // Mutations
 export const CREATE_USER = gql`
-  mutation {
+  mutation CreateUser ($name: String!, $email: String!, $password: String!, $cpf: String!) {
     createUser(
-      name: "string",
-      email: "string",
-      password: "password",
-      cpf: "string"
+      name: $name,
+      email: $email,
+      password: $password,
+      cpf: $cpf
     ) {
+      name
       id
+      email
+      cpf
+      token
+      accountId
     }
   }
 `;
 
 export const LOGIN = gql`
   mutation Login($email: String!, $password: String!) {
-    login(email: $email, password: $password)
+    login(email: $email, password: $password){
+      id
+      token
+      email
+      name
+    }
   }
 `;
 
@@ -80,19 +88,13 @@ export const CREATE_ACCOUNT = gql`
 `;
 
 export const CREATE_TRANSACTION = gql`
-  mutation {
+  mutation Transaction( $from: ID!, $to: ID!, $amount: Float!) {
     createTransaction(
-      from: "string",
-      to: "string",
-      amount: 0.00
+      from: $from,
+      to: $to,
+      amount: $amount
     ) {
       id
-      from {
-        ownerName
-      }
-      to {
-        ownerName
-      }
     }
   }
 `;

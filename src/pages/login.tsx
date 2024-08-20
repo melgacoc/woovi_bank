@@ -16,7 +16,13 @@ export default function Login() {
       .then(response => {
         if(response.data.login) {
           console.log('Logged in');
-          localStorage.setItem('authToken', response.data.login);
+          localStorage.setItem('authToken', JSON.stringify({
+            token: response.data.login.token,
+            id: response.data.login.id,
+            email: response.data.login.email,
+            name: response.data.login.name,
+            accountId: response.data.login.accountId
+          }));
           window.location.href = '/dashboard';
         }
       })
@@ -44,10 +50,10 @@ export default function Login() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <Button type="submit" variant="secondary" size="lg">
+        <Button type="submit" size="lg" className="bg-[#113463] hover:text-[#0f2f52] mr-2">
           {loading ? 'Loading...' : 'Login'}
         </Button>
-        <Button type="button" variant="link" onClick={handleRedirect}>
+        <Button type="button" size="lg" onClick={handleRedirect} className="bg-[#113463] hover:text-[#0f2f52]">
             Create an account
         </Button>
       </form>
