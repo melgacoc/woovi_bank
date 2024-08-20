@@ -31,7 +31,8 @@ export const formateDate = (data: string): string => {
     return moment(timestamp).format("DD/MM/YYYY");
 };
 
-export const formateDateToTimestamp = (data: string): number => {
+export const formateDateToTimestamp = (data: Date | null): number => {
+    console.log(data);
     const date = moment(data, "DD/MM/YYYY").toDate();
     return date.getTime();
 }

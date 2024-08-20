@@ -11,6 +11,7 @@ import { Search } from "lucide-react";
 import { ChevronUp } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 import { formatCurrencyBRL, parseCurrencyBRL, formateDate, formateDateToTimestamp, formatCurrency } from '../utils/functions';
+import { IAccount, ITransaction } from '../interfaces/Interfaces';
 
 export default function Dashboard() {
     const user = JSON.parse(localStorage.getItem('authToken') as string);
@@ -22,15 +23,16 @@ export default function Dashboard() {
     const [accountId, setAccountId] = useState<string | undefined>(undefined);
     const [createTransaction, { loading }] = useMutation(CREATE_TRANSACTION);
     const { data: accountsData, refetch: refatchAccounts } = useQuery(GET_ACCOUNTS);
-    const userAccount = accountsData?.accounts.find((account) => account.owner.id === user.id);
-    const filteredAccounts = accountsData?.accounts.filter((account) => account.owner.id !== user.id);
+    const userAccount = accountsData?.accounts.find((account: IAccount) => account.owner.id === user.id);
+    const filteredAccounts = accountsData?.accounts.filter((account: IAccount) => account.owner.id !== user.id);
     const { data: transactionsData, refetch: refatchTransactions } = useQuery(GET_TRANSACTIONS, {
-        variables: {
-            accountId: user.accountId,
-            dateFilterTo: dateFilterTo ? moment(dateFilterTo).format("YYYY-MM-DD") : null,
-            dateFilterFrom: dateFilterFrom ? moment(dateFilterFrom).format("YYYY-MM-DD") : null,
-        },
+      variables: {
+        accountId: user.accountId,
+        dateFilterTo: dateFilterTo ? moment(dateFilterTo).format("YYYY-MM-DD") : null,
+        dateFilterFrom: dateFilterFrom ? moment(dateFilterFrom).format("YYYY-MM-DD") : null,
+      },
     });
+    console.log(transactionsData);
 
     const handleTransferSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -103,7 +105,7 @@ export default function Dashboard() {
                                     className="block w-full rounded-md border-gray-300 shadow-sm"
                                 >
                                     <option value="">Select Account</option>
-                                    {filteredAccounts?.map((account) => (
+                                    {filteredAccounts?.map((account: IAccount) => (
                                         <option key={account.id} value={account.id}>
                                             {account.ownerName}
                                         </option>
@@ -173,7 +175,7 @@ export default function Dashboard() {
                             <Button
                                 className="bg-[#113463] hover:text-[#03D69D]" 
                                 onClick={() => {
-                                  refetch({
+                                  refatchTransactions({
                                       accountId: '66bf4e8b4ac058a7c7d0645c',
                                       filter: {
                                           startDate: formateDateTo.toString(),
@@ -199,7 +201,7 @@ export default function Dashboard() {
                             </TableRow>
                         </TableHeader>
                         <TableBody>
-                            {transactionsData?.transactions.map((transaction) => (
+                            {transactionsData?.transactions.map((transaction: ITransaction) => (
                                 <TableRow key={transaction.id}>
                                     <TableCell>
                                         {transaction.type === 'income' ? (
