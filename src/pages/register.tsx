@@ -43,82 +43,85 @@ export default function Register() {
 
     return (
         <div className="flex items-center justify-center h-screen">
-            <form onSubmit={handleSubmit} className="space-y-6 w-full max-w-md">
-                <div className="relative">
-                    {errors?.name === false && (
-                        <div className="text-red-500 text-sm absolute -top-5 left-0">
-                            Name must be at least 3 characters.
-                        </div>
-                    )}
-                    <Input
-                        type="text"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
-                        className="w-full"
-                    />
-                </div>
+            <div className="space-y-6 w-full max-w-md">
+                <div className="text-3xl font-bold text-center mb-8">Woovi</div>
+                <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="relative">
+                        {errors?.name === false && (
+                            <div className="text-red-500 text-sm absolute -top-5 left-0">
+                                Name must be at least 3 characters.
+                            </div>
+                        )}
+                        <Input
+                            type="text"
+                            placeholder="Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div className="relative">
-                    {errors?.email === false && (
-                        <div className="text-red-500 text-sm absolute -top-5 left-0">
-                            Please enter a valid email address.
-                        </div>
-                    )}
-                    <Input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="w-full"
-                    />
-                </div>
+                    <div className="relative">
+                        {errors?.email === false && (
+                            <div className="text-red-500 text-sm absolute -top-5 left-0">
+                                Please enter a valid email address.
+                            </div>
+                        )}
+                        <Input
+                            type="email"
+                            placeholder="Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div className="relative">
-                    {errors?.password === false && (
-                        <div className="text-red-500 text-sm absolute -top-5 left-0">
-                            Password must be at least 6 characters.
-                        </div>
-                    )}
-                    <Input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="w-full"
-                    />
-                </div>
+                    <div className="relative">
+                        {errors?.password === false && (
+                            <div className="text-red-500 text-sm absolute -top-5 left-0">
+                                Password must be at least 6 characters.
+                            </div>
+                        )}
+                        <Input
+                            type="password"
+                            placeholder="Password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            className="w-full"
+                        />
+                    </div>
 
-                <div className="relative">
-                    {errors?.cpf === false && (
-                        <div className="text-red-500 text-sm absolute -top-5 left-0">
-                            CPF must be 11 digits.
-                        </div>
-                    )}
-                    <Input
-                        type="text"
-                        placeholder="CPF"
-                        value={cpf}
-                        onChange={(e) => {
-                            const formattedValue = formatCPF(e.target.value);
-                            setCpf(formattedValue);
-                        }}
-                        onBlur={() => {
-                            const numericValue = parseCPF(cpf);
-                            console.log("CPF Numeric Value:", numericValue);
-                        }}
-                        className="w-full"
-                    />
-                </div>
+                    <div className="relative">
+                        {errors?.cpf === false && (
+                            <div className="text-red-500 text-sm absolute -top-5 left-0">
+                                CPF must be 11 digits.
+                            </div>
+                        )}
+                        <Input
+                            type="text"
+                            placeholder="CPF"
+                            value={cpf}
+                            onChange={(e) => {
+                                const formattedValue = formatCPF(e.target.value);
+                                setCpf(formattedValue);
+                            }}
+                            onBlur={() => {
+                                const numericValue = parseCPF(cpf);
+                                console.log("CPF Numeric Value:", numericValue);
+                            }}
+                            className="w-full"
+                        />
+                    </div>
 
-                <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-[#113463] text-white hover:bg-[#0f2f52]"
-                >
-                    {loading ? 'Loading...' : 'Register'}
-                </Button>
-            </form>
+                    <Button 
+                        type="submit" 
+                        size="lg" 
+                        className="w-full bg-[#113463] text-white hover:bg-[#0f2f52]"
+                    >
+                        {loading ? 'Loading...' : 'Register'}
+                    </Button>
+                </form>
+            </div>
         </div>
     );
 }
