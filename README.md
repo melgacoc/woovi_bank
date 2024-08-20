@@ -1,50 +1,81 @@
-# React + TypeScript + Vite
+Woovi Bank
+==========
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Woovi Bank é uma aplicação de gerenciamento bancário com recursos de registro e login de usuários. Este projeto utiliza uma stack moderna de tecnologias para garantir uma experiência de usuário eficiente e responsiva.
 
-Currently, two official plugins are available:
+## Tecnologias
+![Typescript Badge](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Graphql](https://img.shields.io/badge/GraphQl-E10098?style=for-the-badge&logo=graphql&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Apollo](https://img.shields.io/badge/Apollo%20GraphQL-311C87?&style=for-the-badge&logo=Apollo%20GraphQL&logoColor=white)
+![Shadcn](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Vite](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Configuração do Projeto
+-----------------------
 
-## Expanding the ESLint configuration
+1.  **Clone o Repositório:*
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+    ```bash
+    git clone https://github.com/usuario/woovi-bank.git
+    cd woovi-bank
+    ```
 
-- Configure the top-level `parserOptions` property like this:
+2.  **Instale as Dependências:**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+    ```bash
+    npm install
+    ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+4.  **Configure as Variáveis de Ambiente:**
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+    Crie um arquivo `.env` na raiz do projeto e adicione a URL do seu backend GraphQL:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    ```bash
+    GRAPHQL_URL=https://woovi-bank-backend.onrender.com/graphql
+    ```
+
+6.  **Execute o Projeto:**
+
+    ```bash
+    npm run dev
+    ```
+
+    Isso iniciará o servidor de desenvolvimento. Abra seu navegador e acesse http://localhost:3000. Verifique a disponibilidade da porta.
+
+Estrutura do Projeto
+--------------------
+
+-   **`src/components`**: Componentes reutilizáveis, incluindo inputs e botões estilizados com Shadcn.
+-   **`src/services/queries.ts`**: Definições de consultas e mutações GraphQL.
+-   **`src/utils/functions.ts`**: Funções utilitárias para formatação de dados, como CPF e moeda.
+-   **`src/utils/validations.ts`**: Funções de validação para o formulário de registro.
+
+Validações no Registro
+----------------------
+
+Na página de registro, são realizadas validações para garantir que os dados inseridos sejam válidos:
+
+-   **Nome**: Deve ter pelo menos 3 caracteres.
+-   **Email**: Deve ser um email válido.
+-   **Senha**: Deve ter pelo menos 6 caracteres.
+-   **CPF**: Deve ter exatamente 11 dígitos.
+
+As validações são aplicadas no formulário antes que os dados sejam enviados ao servidor. Erros de validação são exibidos abaixo dos campos de entrada correspondentes para orientar o usuário na correção dos dados.
+
+Exemplo de Uso
+--------------
+
+### Login
+
+O usuário pode realizar o login com o email e senha. Após a autenticação, o token de autenticação, id, email, nome e id da conta são armazenados no `localStorage` e o usuário é redirecionado para o dashboard.
+
+### Registro
+
+O usuário pode criar uma nova conta fornecendo nome, email, senha e CPF. Assegure-se de que todos os campos estejam corretamente preenchidos para uma criação bem-sucedida da conta.
+
+Deploy
+------------
+
+Acesse o projeto diretamente pelo [link de deploy](https://woovibank.netlify.app/). Por se tratar de um deploy free a primeira requisição após o sistema estar inativo demora em torno de 50s para acontecer.
