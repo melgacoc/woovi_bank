@@ -15,42 +15,34 @@ Woovi Bank é uma aplicação de gerenciamento bancário com recursos de registr
 Configuração do Projeto
 -----------------------
 
-1.  **Clone o Repositório:**
+1.  **Clone o Repositório:*
 
-    bash
-
-    Copiar código
-
-    `git clone https://github.com/usuario/woovi-bank.git
-    cd woovi-bank`
+    ```bash
+    git clone https://github.com/usuario/woovi-bank.git
+    cd woovi-bank
+    ```
 
 2.  **Instale as Dependências:**
 
-    bash
+    ```bash
+    npm install
+    ```
 
-    Copiar código
-
-    `npm install`
-
-3.  **Configure as Variáveis de Ambiente:**
+4.  **Configure as Variáveis de Ambiente:**
 
     Crie um arquivo `.env` na raiz do projeto e adicione a URL do seu backend GraphQL:
 
-    env
+    ```bash
+    GRAPHQL_URL=https://woovi-bank-backend.onrender.com/graphql
+    ```
 
-    Copiar código
+6.  **Execute o Projeto:**
 
-    `GRAPHQL_URL=https://woovi-bank-backend.onrender.com/graphql`
+    ```bash
+    npm run dev
+    ```
 
-4.  **Execute o Projeto:**
-
-    bash
-
-    Copiar código
-
-    `npm run dev`
-
-    Isso iniciará o servidor de desenvolvimento. Abra seu navegador e acesse http://localhost:3000.
+    Isso iniciará o servidor de desenvolvimento. Abra seu navegador e acesse http://localhost:3000. Verifique a disponibilidade da porta.
 
 Estrutura do Projeto
 --------------------
